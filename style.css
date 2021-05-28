@@ -1,31 +1,25 @@
-/*------------------------ Global ------------------------*/
+/*--------------------------------- Global ----------------------------------*/
 
 :root {
-
     /* sets height for navbar, <span> (icons) and <a> */
-    --navbar-height: 60px;  
-
+    --navbar-height: 60px;
     /*------------ Colors ------------*/
     /* Black & White */
     --white-1: #F3F3F3;
     --black-1: #222;
-
     /* Grey */
     --grey-1: #696B76;
     --grey-2: #4B4C55;
     --light-grey-1: #AAA;
-
     /* Primary colors */
-    --orange-1: #FF8E04;	
+    --orange-1: #FF8E04;
     --sand-1: #ACAA97;
-
     /* Secondary colors */
     --blue-1: #2068AE;
 }
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 59px;
 }
 
 * {
@@ -39,16 +33,18 @@ body {
     background-color: var(--white-1);
 }
 
-h1,
-h2,
-h3 {
+section {
+    padding-top: 59px;
+    margin-top: -59px;
+}
+
+h1, h2, h3, p, #contacts a {
     font-family: 'Ubuntu', sans-serif;
     text-align: center;
     color: var(--black-1);
 }
 
-
-/*--------------------- Navbar ---------------------*/
+/*--------------------------------- NavBar ----------------------------------*/
 
 #navbar {
     position: fixed;
@@ -65,20 +61,25 @@ h3 {
 
 #navbar ul {
     list-style-type: none;
+    display: flex;
+    justify-content: flex-end;
     padding-right: 36px;
+    width: 100%;
+    
 }
 
 #navbar ul li {
     display: inline-block;
     position: relative;
-    margin-left: 10px;
+    margin-left: 0px;
+    /* !!! was 10px */
     width: 90px;
     height: var(--navbar-height);
 }
 
 /* common properties of rotating elements */
-#navbar span.nav-front,    
-#navbar a.nav-right {
+
+#navbar span.nav-front, #navbar a.nav-right {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,9 +101,9 @@ h3 {
 #navbar a.nav-right {
     position: relative;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 1.3em;
+    font-size: 1.2em;
     color: var(--black-1);
-    text-decoration: none;
+    text-decoration: underline;
     transform: rotateY(-90deg);
     transform-origin: 0 0 90px;
 }
@@ -116,28 +117,7 @@ h3 {
     opacity: 1;
 }
 
-/* growing underline */
-#navbar a.nav-right:before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 3px;
-    bottom: 20%;
-    left: 0;
-    border-radius: 2px;
-    background-color: var(--grey-2);
-    visibility: hidden;
-    transform: scaleX(0);
-    transition: all 0.2s ease-in-out;
-}
-
-#navbar a.nav-right:hover:before {
-    visibility: visible;
-    transform: scaleX(1);
-}
-
-
-/*--------------------- Welcome Section ---------------------*/
+/*---------------------------- Welcome Section ------------------------------*/
 
 #welcome-section {
     display: flex;
@@ -145,11 +125,11 @@ h3 {
     justify-content: space-around;
     height: 100vh;
     background-color: var(--grey-2);
-}  
+}
 
 #welcome-section div:nth-of-type(1) {
-    flex-basis: 30%;
-    background-color: #FFBA65; 
+    flex-basis: 34%; /*set div height*/
+    background-color: #FFBA65;
     background: linear-gradient(70deg, #FFAE4B, #FFCB8B);
     border-bottom: 1px solid var(--black-1);
     transform-origin: 100%;
@@ -158,7 +138,7 @@ h3 {
 }
 
 #welcome-section div:nth-of-type(2) {
-    flex-basis: 44%;
+    flex-basis: 46%; /*set div height*/
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -183,47 +163,49 @@ h3 {
 }
 
 #welcome-section div:nth-of-type(3) {
-    flex-basis: 26%;
+    flex-basis: 20%; /*set div height*/
     background: linear-gradient(to bottom, var(--grey-2), var(--sand-1));
 }
 
 #welcome-section h1 {
-    font-size: clamp(4rem, 15vw, 7rem);
+    font-size: clamp(3.5rem, 15vw, 7rem);
     position: relative;
     top: -5%;
 }
+
 #welcome-section h1 span {
     color: var(--orange-1);
 }
 
 #welcome-section h2 {
-    position: relative;
-    top: 0.5em;
     width: 95%;
     align-self: center;
-    font-size: 3em;
+    font-size: clamp(2rem, 7vw, 3rem);
 }
+
 #welcome-section h2 span {
     color: var(--white-1);
 }
 
+/*---------------------------- Project Section ------------------------------*/
 
-
-/*--------------------- Projects Section ---------------------*/
-
-#projects {            /*--- Section ---*/
+#projects {
+    position: relative;
+    top: calc(var(--navbar-height) - 1px);
     padding: 5% 0;
     background: linear-gradient(0deg, var(--grey-1), var(--sand-1));
 }
 
 #projects h2 {
-    margin-top: -1em;
-    font-size: 3.5em;
+    padding: 0 2rem 0 2rem;
+    /* wrap text before it reachs edges */
+    margin-top: 2rem;
+    font-size: clamp(2rem, 8vw, 3.4rem);
     color: var(--black-1);
 }
 
-
-.projects-container {  /*--- projects main container (flex) ---*/
+.projects-container {
+    /* projects main container (flex) */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -231,7 +213,13 @@ h3 {
     padding: 5% 0;
 }
 
-.project-tile {         /*--- Img container ---*/
+.projects-container:last-child {
+    /* give the last project-container a bit more space when the first media query kicks in */
+    margin-bottom: 1rem;
+}
+
+.project-tile {
+    /* img container */
     position: relative;
     left: 0;
     right: 0;
@@ -246,6 +234,7 @@ h3 {
     background-color: var(--grey-1);
     box-shadow: 5px 5px 5px var(--grey-2);
     transition: z-index 0.75s, scale 0.5s, box-shadow 0.7s, left 0.5s, right 0.5s;
+    -webkit-transition: all 0.5s; 
 }
 
 .project-tile img {
@@ -260,7 +249,7 @@ h3 {
 
 .project-tile figcaption {
     font-family: "Lato", sans-serif;
-    font-size: 0.9em;
+    font-size: clamp(0.8rem, 2vw, 1rem);
     color: var(--white-1);
     padding: 1%;
     border: 1px solid var(--light-grey-2);
@@ -269,17 +258,19 @@ h3 {
 }
 
 .project-tile:hover {
-    scale: 1.2;
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
     box-shadow: 0 0 0;
     z-index: 10;
 }
 
-/* move left imgs toward center on hover */
-.project-tile:nth-of-type(2n+1):hover {  
+.project-tile:nth-of-type(2n+1):hover {
+    /* move left imgs toward center on hover */
     left: 10%;
 }
-/* move right imgs toward center on hover */
+
 .project-tile:nth-of-type(2n):hover {
+    /* move right imgs toward center on hover */
     left: -10%;
 }
 
@@ -294,22 +285,25 @@ h3 {
 .project-tile:nth-of-type(1):hover figcaption {
     background-color: #F1F1F3;
 }
+
 .project-tile:nth-of-type(2):hover figcaption {
     background-color: #D5D0DE;
 }
+
 .project-tile:nth-of-type(3):hover figcaption {
     background-color: #83c1e7;
 }
+
 .project-tile:nth-of-type(4):hover figcaption {
     background-color: #81e999;
 }
 
-/*--------------------- Contacts Section ---------------------*/
+/*---------------------------- Project Section ------------------------------*/
 
-#contacts {   /* <section> */
+#contacts {
     position: relative;
-    width: 100%;
-    height: calc(100vh - 60px); /* 60px = navbar height */ 
+    top: 4rem;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -317,7 +311,9 @@ h3 {
     border-top: 1px solid var(--black-1);
     background-color: rgba(176, 176, 176, 1);
 }
-#contacts:before {  /* bkg image */
+
+#contacts:before {
+    /* bkg image */
     content: "";
     position: absolute;
     top: 0;
@@ -333,23 +329,26 @@ h3 {
 }
 
 #contacts h2 {
-    position: relative; /* needed to set a different opacity for .good-bye:before */
+    position: relative;
+    /* needed to set a different opacity for #contacts:before */
     width: 95%;
-    font-size: 5em;
+    font-size: clamp(2.5rem, 10vw, 5rem);
     color: var(--black-1);
-
 }
 
-#contacts .contacts-container {  /* div containing all .contact-box */
+#contacts .contacts-container {
+    /* div containing all .contact-box */
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    position: relative; /* creates new stacking context */
+    position: relative;
+    /* create new stacking context */
     width: 100%;
     height: 140px;
 }
 
-#contacts .contact-box { /* single media-link container */
+#contacts .contact-box {
+    /* single (icon/img) link container */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -360,40 +359,41 @@ h3 {
 }
 
 #contacts a {
+    position: relative;
     text-decoration: none;
     color: var(--black-1);
 }
 
 #contacts .contact-box p {
+    position: relative;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 1.4em;
+    font-size: clamp(1.2rem, 2.4vw, 2.2rem);
     padding-top: 10px;
 }
-#contacts .contact-box:hover p {
+
+#contacts .contact-box:hover p, #contacts a:hover {
     color: var(--blue-1);
 }
 
-#contacts img { /* GitHub, FFC & Linkedin logos */
+#contacts img {
+    /* GitHub & Linkedin logos */
     display: block;
     max-width: 60px;
     height: auto;
 }
-#contacts a:nth-child(1) img {  /* align FFC logo */
+
+#contacts a:nth-child(1) img {
+    /* align FFC logo */
     max-width: 76px;
     padding-top: 4px;
     margin-bottom: 4px;
 }
 
-#contacts span {  /* mail icon */
-    font-size: 57px;
-}
-
-#contacts .contact-box:hover img,
-#contacts .contact-box:hover span {
+#contacts .contact-box:hover img, #contacts .contact-box:hover span {
     animation-name: bounce;
     animation-duration: 0.35s;
     animation-direction: alternate;
-    animation-fill-mode: forwards; 
+    animation-fill-mode: forwards;
     animation-iteration-count: infinite;
 }
 
@@ -406,169 +406,145 @@ h3 {
     }
 }
 
+#contacts .mail-info p {
+    position: relative;
+    font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+}
+
+#contacts .mail-info a {
+    top: 1.5rem;
+    text-decoration: underline;
+    font-size: clamp(0.95rem, 4vw, 1.2rem);
+}
+
+footer {
+    position: relative;
+    top: 4rem;
+    border-top: 1px solid var(--white-1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 35px;
+    background-color: var(--grey-2);
+}
+
+footer p {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(0.7rem, 4vw, 0.9rem);
+    color: var(--white-1);
+    text-align: right;
+    margin-right: 1rem;
+}
+
 /*---------------------------------------------------------------------------------*/
 /*--------------------------------- Media Queries ---------------------------------*/
 /*---------------------------------------------------------------------------------*/
 
-/*=============== Tablets, small screens ===============*/
+/*=============== Tablets, small screens 880px ===============*/
 
-@media only screen and (max-width: 55em /* 880px */) {
-
-    /*------ Welcome Section ------*/
-
-    #welcome-section h2 {
-        font-size: 2.5em;
+@media screen and (max-width: 55em) {
+    .projects-container {
+        /* main projects (flex) container 
+    align projects in a single column */
+        flex-direction: column;
+        align-items: center;
+        padding: 5% 0;
     }
-
-    /*------ Projects Section ------*/
-
-    #projects h2 {
-    font-size: 3em;
-    padding: 0 5%;
-    margin-top: -0.8em;
-    color: var(--black-1);
-    }
-
-    .projects-container {  /*--- main projects (flex) container ---*/
-    flex-direction: column;
-    align-items: center;
-    padding: 5% 0;
-    }
-
-    .project-tile {        /*--- Img container ---*/
-        width: 75%;
+    .project-tile {
+        /* img container */
+        width: 88%;
         margin: 3% 0.5%;
     }
-
-    .project-tile:nth-of-type(2n+1):hover,
-    .project-tile:nth-of-type(2n):hover {  
-    left: 0;
+    .project-tile:hover {
+        scale: 1.1;
     }
-
-    /*------ Contacts Section ------*/
-
-    #contacts h2 {
-        font-size: 4em;
-    }
-
-} 
-
-/*=============== Smaller screens, Mobiles ===============*/
-
-@media only screen and (max-width: 45em /* 720px */) {
-
-    /*------ Navbar ------*/
-
-    #navbar {
-        justify-content: center;
-    }
-
-    #navbar ul {
-        padding-right: 0;
-    }
-
-    /*------ Welcome Section ------*/
-
-    #welcome-section h2 {
-        font-size: 2.25em;
-    }
-
-    /*------ Projects Section ------*/
-
-    #projects h2 {
-        font-size: 2.25em;
-    }
-
-    .project-tile {
-        width: 80%;
-        margin: 4% 0.5%;
-    }
-
-    /*------ Contacts Section ------*/    
-
-    #contacts h2{
-        font-size: 3em;
-    }
-
-    #contacts .contacts-container {
-        flex-wrap: wrap;
+    .project-tile:nth-of-type(2n+1):hover, .project-tile:nth-of-type(2n):hover {
+        left: 0;
     }
 }
 
-/*=============== Mobiles ===============*/
+/*=============== Smaller screens (720px) ================*/
 
-@media only screen and (max-width: 35em /* 560px */) {
-    
+@media screen and (max-width: 45em) {
     /*------ Navbar ------*/
-
+    #navbar {
+        justify-content: center;
+    }
+    #navbar ul {
+        padding-right: 0;
+        justify-content: space-around;
+    }
     #navbar ul li {
-        width: 20vw;
+        width: 140px;
+    }
+    /*------ Projects Section ------*/
+    .project-tile {
+        width: 94%;
+        margin: 2% 0.5%;
+    }
+    .project-tile img {
+        opacity: 1;
+    }
+    .project-tile figcaption {
+        color: var(--black-1);
+    }
+    .project-tile:hover {
+        scale: 1;
+        box-shadow: 5px 5px 5px var(--grey-2);
+    }
+    .project-tile:nth-of-type(1) figcaption {
+        background-color: #F1F1F3;
+    }
+    .project-tile:nth-of-type(2) figcaption {
+        background-color: #D5D0DE;
+    }
+    .project-tile:nth-of-type(3) figcaption {
+        background-color: #83c1e7;
+    }
+    .project-tile:nth-of-type(4) figcaption {
+        background-color: #81e999;
     }
 
-    #navbar span.nav-front {
-        font-size: 1.5em;
-    }
+    /*------ Contacts Section ------*/ /*
+    #contacts .contacts-container {
+        flex-wrap: wrap;
+    } */
+}
 
+
+/*============ Mobiles 576px or touchscreen ============*/
+
+@media (any-hover: none), screen and (max-width:36em) {
+
+    /*------ Navbar ------*/
+    #navbar ul li {
+        width: auto;
+        margin: 0 5px 0 5px;
+    }
     #navbar a.nav-right {
         font-size: 1.1em;
-        transform-origin: 0 0 35px;
+        transform: rotateY(0deg);
+    }
+    #navbar li span {
+        transform: rotateY(-90deg);
     }
 
-    /*------ Welcome Section ------*/
-
-    #welcome-section h2 {
-        position: relative;
-        top: 0.5em;
-        font-size: 2em;
-    }
-
-    /*------ Projects Section ------*/
-
-    #projects h2 {
-        margin-top: -0.5em;
-        font-size: 2em;
-    }
-
-
-@media only screen and (max-width: 25em /* 400px */) {
-
-    /*------ Navbar ------*/
-
-    #navbar span.nav-front {
-        font-size: 1.3em;
-    }
-
-    /*------ Welcome Section ------*/
-
+    /*------- Welcome section ------*/
     #welcome-section div:nth-of-type(1) {
         flex-basis: 32%;
     }
     #welcome-section div:nth-of-type(2) {
-        flex-basis: 54%;
+        flex-basis: 60%;
     }
     #welcome-section div:nth-of-type(3) {
-        flex-basis: 28%;
+        flex-basis: 18%;
     }
 
-    /*------ Projects Section ------*/
-
-    .project-tile figcaption {
-        font-size: 0.7em;
+    /*------ Projects -------*/
+    #projects {
+        padding: 15% 0;
     }
-
-    /*------ Contacts Section ------*/ 
-
-    #contacts h2 {
-        font-size: 2.5em;
+    #projects h2 {
+        margin-top: 3rem;
     }
-
-    #contacts .contact-box {
-        width: 75px;
-    }
-
-    #contacts .contact-box p {
-        font-size: 1.2em;
-    }
-
-}
 }
