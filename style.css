@@ -298,7 +298,7 @@ h1, h2, h3, p, #contacts a {
     background-color: #81e999;
 }
 
-/*---------------------------- Project Section ------------------------------*/
+/*---------------------------- Contacts Section ------------------------------*/
 
 #contacts {
     position: relative;
@@ -421,19 +421,23 @@ footer {
     position: relative;
     top: 4rem;
     border-top: 1px solid var(--white-1);
+    padding: 0.5em 1em;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 35px;
     background-color: var(--grey-2);
 }
 
 footer p {
     font-family: 'Lato', sans-serif;
-    font-size: clamp(0.7rem, 4vw, 0.9rem);
+    font-size: clamp(0.7rem, 3.5vw, 0.85rem);
     color: var(--white-1);
-    text-align: right;
-    margin-right: 1rem;
+    text-align: left;
+    /* margin-right: 1rem; */
+}
+
+footer a {
+    color: #aebafc;
 }
 
 /*---------------------------------------------------------------------------------*/
@@ -456,7 +460,8 @@ footer p {
         margin: 3% 0.5%;
     }
     .project-tile:hover {
-        scale: 1.1;
+        transform: scale(1.1);
+        -webkit-transform: scale(1.1);
     }
     .project-tile:nth-of-type(2n+1):hover, .project-tile:nth-of-type(2n):hover {
         left: 0;
@@ -489,7 +494,8 @@ footer p {
         color: var(--black-1);
     }
     .project-tile:hover {
-        scale: 1;
+        transform: scale(1);
+        -webkit-transform: scale(1);
         box-shadow: 5px 5px 5px var(--grey-2);
     }
     .project-tile:nth-of-type(1) figcaption {
